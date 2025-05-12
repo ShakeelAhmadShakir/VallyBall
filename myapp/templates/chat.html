@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="main-container">
+    
+    <div class="left-column">
+        <h2 class="history-title">Chat History</h2>
+        {% comment %} <ul class="chat-history">
+            <li class="history-item">Hello GPT</li>
+            <li class="history-item">Upload football video</li>
+            <li class="history-item">What is offside rule?</li>
+            <li class="history-item">Tactics for 4-4-2</li>
+            <li class="history-item">Best strikers 2024</li>
+        </ul> {% endcomment %}
+    </div> 
+   
+
+    <div class="right-column">
+        <div class="logo-container">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" class="chat-logo">
+            {% comment %} <h1 class="chat-title">{{ title }}</h1> {% endcomment %}
+        </div>
+        
+        <form method="post" enctype="multipart/form-data" class="chat-input-wrapper">
+            {% csrf_token %}
+            <label for="video-upload" class="upload-button">+</label>
+            <input id="video-upload" type="file" name="video" accept="video/*" class="file-input" onchange="showFileName()">
+        
+            <span id="file-name" class="file-name-placeholder">No file selected</span>
+        
+            <button type="submit" class="send-button">→</button>
+        </form>
+
+        <p id="status-text" style="margin-top: 10px;"></p>
+    </div>
+</div>
+
+<script>
+    function showFileName() {
+        const fileInput = document.getElementById('video-upload');
+        const fileNameSpan = document.getElementById('file-name');
+        if (fileInput.files.length > 0) {
+            fileNameSpan.textContent = fileInput.files[0].name;
+        } else {
+            fileNameSpan.textContent = 'No file selected';
+        }
+    }
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const statusText = document.getElementById('status-text');
+
+        statusText.textContent = '⏳ Uploading...';
+
+        fetch('/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            statusText.innerHTML = `${data.message}<br>🔄 Checking results...`;
+            checkResults(data.key);
+        })
+        .catch(error => {
+            statusText.textContent = '❌ An error occurred.';
+            console.error(error);
+        });
+    });
+
+    function checkResults(key) {
+        const statusText = document.getElementById('status-text');
+
+        fetch(`/get-results/?key=${key}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'done') {
+                    if (data.goal_count > 0 && data.clip_url) {
+                        
+                    statusText.innerHTML = `✅ Processing complete.<br>🥅 Goals detected: ${data.goal_count}<br><a href="${data.clip_url}" download>⬇️ Download Goal Highlights</a>`;
+
+                    } else {
+                        statusText.innerHTML = `✅ Processing complete.<br>😢 No goals detected.`;
+                    }
+                } else {
+                    setTimeout(() => checkResults(key), 3000);  // Check again in 3s
+                }
+            })
+            .catch(error => {
+                statusText.textContent = '❌ Failed to fetch results.';
+                console.error(error);
+            });
+    }
+</script>
+
+</body>
+</html>
