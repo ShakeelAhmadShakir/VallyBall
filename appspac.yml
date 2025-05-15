@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files: 
   - source: /
-    destination: /home/ubuntu/football
+    destination: /home/ubuntu/Vallyball
 permissions:
-  - object: /home/ubuntu/football
+  - object: /home/ubuntu/Vallyball
     owner: ubuntu
     group: ubuntu
 hooks:

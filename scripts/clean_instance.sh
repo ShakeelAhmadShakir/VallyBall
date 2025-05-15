@@ -1,1 +1,1 @@
-sudo rm -rf /home/ubuntu/football/*
+sudo rm -rf /home/ubuntu/Vallyball/*
