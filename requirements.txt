@@ -1,0 +1,18 @@
+# Web framework
+Django==4.2.7
+
+# Ultralytics YOLO (stable version with PyTorch)
+ultralytics==8.0.226
+
+# Computer vision
+opencv-python==4.8.0.76
+
+# PyTorch (compatible with YOLO v8 and Torchvision)
+torch==2.0.1
+torchvision==0.15.2
+
+# Other dependencies
+numpy==1.24.4
+
+# No version needed for built-in modules
+# threading and os are built into Python standard library
