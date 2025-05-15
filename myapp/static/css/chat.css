@@ -140,7 +140,7 @@
       
       .left-column {
         flex: 1 1 25%;
-        background-color: #ffffff;
+        background-color:#C6C6C6;
         min-width: 200px;
         padding: 20px;
         overflow-y: auto;
@@ -150,7 +150,7 @@
       
       .right-column {
         flex: 1 1 75%;
-        background: #3193CE;
+        background:#0B1A27;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -167,7 +167,7 @@
       }
       
       .chat-logo {
-        width: 100px;
+        width: 150px;
         height: auto;
         object-fit: contain;
         margin-bottom: 10px;
@@ -177,7 +177,7 @@
         font-size: 26px;
         font-weight: bold;
         text-align: center;
-        color: #ffffff;
+        color: #C6C6C6;
       }
       
       .chat-input-wrapper {
@@ -188,7 +188,7 @@
         padding: 10px 15px;
         max-width: 90%;
         width: 500px;
-        background-color: #ffffff;
+        background-color: #C6C6C6;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       
@@ -251,7 +251,7 @@
       .file-name-placeholder {
         flex: 1;
         font-size: 16px;
-        color: #333;
+        color: #C6C6C6;
         padding-left: 10px;
         overflow: hidden;
         text-overflow: ellipsis;
