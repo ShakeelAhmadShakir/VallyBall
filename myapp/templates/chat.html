@@ -59,7 +59,7 @@
         const statusText = document.getElementById('status-text');
 
         statusText.textContent = '⏳ Uploading...';
-
+        statusText.classList.add('animate');
         fetch('/', {
             method: 'POST',
             body: formData
@@ -82,6 +82,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'done') {
+                    statusText.classList.remove('animate');
                     if (data.goal_count > 0 && data.clip_url) {
                         
                     statusText.innerHTML = `✅ Processing complete.<br>🥅 Goals detected: ${data.goal_count}<br><a href="${data.clip_url}" download>⬇️ Download Goal Highlights</a>`;

@@ -150,7 +150,7 @@
       
       .right-column {
         flex: 1 1 75%;
-        background: linear-gradient(to right, #e0f0ff, #007bff);
+        background: #3193CE;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -257,4 +257,91 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-      
+
+      /* General text color */
+body,
+.chat-title,
+.history-title,
+.history-item,
+.chat-input,
+.file-name-placeholder {
+  color: #333333 !important;
+}
+
+/* Chat input wrapper text */
+.chat-input-wrapper {
+  color: #333333 !important;
+}
+
+/* Send and upload button icons */
+.send-button,
+.upload-button {
+  color: #333333 !important;
+}
+
+/* Force chat history item text color */
+.history-item {
+  color: #333333 !important;
+}
+
+/* Placeholder color in input */
+.chat-input::placeholder {
+  color: #666666 !important;
+}
+
+      /* Upload status and results area */
+#status-text {
+  font-size: 18px;
+  color: #333333;
+  margin-top: 20px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Goal highlight count */
+#status-text strong,
+#status-text .goal-count {
+  color: #222222;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Download link styling */
+#status-text a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #3193CE;
+  text-decoration: none;
+  border: 2px solid #3193CE;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#status-text a:hover {
+  background-color: #3193CE;
+  color: #ffffff;
+}
+
+/* Emoji enhancements */
+#status-text::before {
+  content: '';
+  display: block;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+/* Optional animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+#status-text.animate {
+  animation: pulse 1s infinite;
+}
